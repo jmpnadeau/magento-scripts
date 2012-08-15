@@ -12,16 +12,16 @@
 // There are compatibility functions for PHP version < 5.3
 
 // get_called_class
-if ( function_exists( 'get_called_class' ) )
+if (!function_exists('get_called_class'))
 {
-    function get_called_class ()
+    function get_called_class()
     {
         $trace = debug_backtrace(); 
         $trace = $trace[0];
         
-        if ( isset( $trace['object'] ) && $trace['object'] instanceof $trace['class'] )
+        if (isset($trace['object']) && $trace['object'] instanceof $trace['class'])
         {
-            return get_class( $trace['object'] );
+            return get_class($trace['object']);
         }
         
         
