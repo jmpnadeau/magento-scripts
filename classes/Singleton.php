@@ -10,7 +10,7 @@
  */
 
 
-include_once 'Config.php';
+include_once 'Compat.php';
 
 
 abstract class Singleton
