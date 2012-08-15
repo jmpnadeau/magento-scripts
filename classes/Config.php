@@ -10,12 +10,9 @@
  */
 
 
-require_once 'Singleton.php';
-
-
-class Config extends Singleton
+class Config
 {
-    
+
     protected static $_instance = null;
     
     protected $_config = null;
@@ -72,6 +69,17 @@ class Config extends Singleton
         {
             throw new Exception('Could not parse Magento config: ' . $e->getMessage());
         }
+    }
+    
+    
+    public static function getInstance()
+    {
+        if (!(self::$_instance instanceof Config))
+        {
+            self::$_instance = new Config();
+        }
+        
+        return self::$_instance;
     }
     
     

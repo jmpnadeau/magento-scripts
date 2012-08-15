@@ -11,11 +11,12 @@
 
 
 require_once 'Config.php';
-require_once 'Singleton.php';
 
 
-class Db extends Singleton
+class Db
 {
+
+    protected static $_instance = null;
     
     protected $_pdoInstance = null;
     
@@ -60,6 +61,17 @@ class Db extends Singleton
         }
         
         return call_user_func_array(array($this->_pdoInstance, $name), $arguments);
+    }
+    
+    
+    public static function getInstance()
+    {
+        if (!(self::$_instance instanceof Db))
+        {
+            self::$_instance = new Db();
+        }
+        
+        return self::$_instance;
     }
     
 }
